@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Moon, Sun, ExternalLink, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react'
+import { Moon, Sun, ExternalLink, Twitter, Instagram, Linkedin } from 'lucide-react'
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
@@ -44,7 +44,7 @@ export default function Component() {
                 <span className="sr-only">Toggle theme</span>
               </Button>
               <Button asChild>
-                <Link href="mailto:contact@abdedemohamett.com">Contact</Link>
+                <Link href="mailto:contact@abdemohamett.com">Contact</Link>
               </Button>
             </div>
           </div>
@@ -70,24 +70,19 @@ export default function Component() {
                 <span className="sr-only">Twitter</span>
               </Button>
             </Link>
-            <Link href="https://instagram.com/abdemohamett" target="_blank" rel="noopener noreferrer">
+            <Link href="https://instagram.com/abdemett" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Button>
             </Link>
-            <Link href="https://linkedin.com/in/abdemohamett" target="_blank" rel="noopener noreferrer">
+            <Link href="https://www.linkedin.com/in/abde-mohamett-5919b0274/" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Button>
             </Link>
-            <Link href="https://youtube.com/@abdirahmanmohamett" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Youtube className="h-5 w-5" />
-                <span className="sr-only">YouTube</span>
-              </Button>
-            </Link>
+
           </div>
         </section>
 
@@ -105,10 +100,10 @@ export default function Component() {
               <CardContent className="space-y-4">
                 <div className="relative aspect-video rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=720&width=1280"
+                    src="/images/m.png"
                     alt="MagicPost website screenshot"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -127,12 +122,12 @@ export default function Component() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">ChapterMind</CardTitle>
-                <CardDescription>Interactive learning platform</CardDescription>
+                <CardDescription>AI Powered TimeStamp generator</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="relative aspect-video rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=720&width=1280"
+                    src="/images/c.png"
                     alt="ChapterMind website screenshot"
                     layout="fill"
                     objectFit="cover"
