@@ -1,6 +1,6 @@
 "use client"
 
-import {Twitter, Instagram, Infinity, Github, ExternalLink } from 'lucide-react'
+import {Twitter, Instagram, Infinity as InfinityIcon, Github, ExternalLink } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -17,7 +17,7 @@ export default function Component() {
           className="flex justify-between items-center"
         >
           <div className="flex items-center gap-2">
-            <Infinity className="w-8 h-8 text-white/80" />
+            <InfinityIcon className="w-8 h-8 text-white/80" />
             <span className="text-gray-200 font-medium">Abde</span>
           </div>
         </motion.div>

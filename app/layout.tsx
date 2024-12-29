@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import {Inter_Tight} from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
- 
 const InterTight = Inter_Tight({
   weight: '400',
   subsets: ['latin'],
