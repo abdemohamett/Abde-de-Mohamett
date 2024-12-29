@@ -1,159 +1,169 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import {Twitter, Instagram, Infinity, Github, ExternalLink } from 'lucide-react'
+import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Moon, Sun, ExternalLink, Twitter, Instagram, Linkedin } from 'lucide-react'
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
+import { motion } from "framer-motion"
 
 export default function Component() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark')
-    }
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
-  }
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <nav className="border-b">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <span className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-              Abde de Mohamett
-            </span>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-              <Button asChild>
-                <Link href="mailto:contact@abdemohamett.com">Contact</Link>
-              </Button>
-            </div>
+    <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-gray-400 flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-2xl mx-auto space-y-16">
+        {/* Logo and Theme Toggle */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-between items-center"
+        >
+          <div className="flex items-center gap-2">
+            <Infinity className="w-8 h-8 text-white/80" />
+            <span className="text-gray-200 font-medium">Abde</span>
           </div>
-        </div>
-      </nav>
+        </motion.div>
 
-      <main className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <section className="text-center mb-16">
-          <h1 className="text-4xl sm:text-6xl font-bold mb-6">
-            Building the future of
+        {/* Heading */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center space-y-6"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-zinc-100">
+            Building the future,
             <br />
-            <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-              digital experiences
-            </span>
+            one product at a time.
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Full-stack developer specializing in creating innovative solutions and transformative web applications
-          </p>
-          <div className="flex justify-center space-x-4">
-            <Link href="https://twitter.com/abdemohamett" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Button>
-            </Link>
-            <Link href="https://instagram.com/abdemett" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Button>
-            </Link>
-            <Link href="https://www.linkedin.com/in/abde-mohamett-5919b0274/" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-            </Link>
+        </motion.div>
 
-          </div>
-        </section>
+        {/* Social Links */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center gap-6"
+        >
+          {[
+            { href: "https://github.com/abdemohamett", icon: Github },
+            { href: "https://twitter.com/abdemohamett", icon: Twitter },
+            { href: "https://instagram.com/abdemett", icon: Instagram },
+          ].map((social) => (
+            <motion.a
+              key={social.href}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <social.icon className="w-5 h-5" />
+              <span className="sr-only">Visit {social.href}</span>
+            </motion.a>
+          ))}
+        </motion.div>
 
-        <section>
-          <h2 className="text-3xl font-bold mb-8">Featured Projects</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl">MagicPost</CardTitle>
-                  <Badge variant="secondary">Beta</Badge>
+        {/* Cards */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="space-y-6"
+        >
+          {[
+            {
+              title: "JuniAI",
+              description: "AI-Powered Journaling Made Simple - Transform voice into beautiful journal entries",
+              icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+              action: "View Project",
+              href: "https://juniai.vercel.app",
+              gradient: "from-[#1DB954] to-emerald-500"
+            },
+            {
+              title: "Plannner",
+              description: "Smart task management and planning application",
+              icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+              action: "View Project",
+              href: "https://plannner.vercel.app",
+              gradient: "from-purple-500 to-pink-500"
+            },
+            {
+              title: "MagicPost",
+              description: "Transform YouTube videos into LinkedIn posts",
+              icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+              action: "View Project",
+              href: "https://trymagicpost.vercel.app",
+              gradient: "from-blue-500 to-indigo-500"
+            },
+            {
+              title: "ChapterMind",
+              description: "AI-powered timestamp generator for video content",
+              icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+              action: "View Project",
+              href: "http://chaptermind.vercel.app",
+              gradient: "from-orange-500 to-red-500"
+            }
+          ].map((card, index) => (
+            <motion.div
+              key={card.title}
+              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+              className="group"
+            >
+              <Card className="bg-zinc-900/50 backdrop-blur-sm border-zinc-800/50 hover:bg-zinc-800/50 transition-all duration-300">
+            <div className="p-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${card.gradient}`}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                        className="w-6 h-6 text-white"
+                    stroke="currentColor"
+                  >
+                    <path
+                          d={card.icon}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                    />
+                  </svg>
                 </div>
-                <CardDescription>Transform YouTube videos into LinkedIn posts</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="relative aspect-video rounded-lg overflow-hidden">
-                  <Image
-                    src="/images/m.png"
-                    alt="MagicPost website screenshot"
-                    fill
-                    className="object-cover"
-                  />
+                <div>
+                      <h3 className="font-semibold text-gray-200 group-hover:text-white transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                        {card.description}
+              </p>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  MagicPost is an AI app that transforms YouTube videos into LinkedIn posts in seconds, allowing you to repurpose content and
-                  grow your network efficiently.
-                </p>
-                <Button asChild>
-                  <Link href="https://trymagicpost.vercel.app" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Visit Site
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+              <Button 
+                variant="ghost" 
+                    className="text-gray-400 hover:text-white"
+                asChild
+                  >
+                    <Link href={card.href}>
+                      <span className="mr-2">{card.action}</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </Link>
+                  </Button>
+            </div>
+          </Card>
+            </motion.div>
+          ))}
+        </motion.div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">ChapterMind</CardTitle>
-                <CardDescription>AI Powered TimeStamp generator</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="relative aspect-video rounded-lg overflow-hidden">
-                  <Image
-                    src="/images/c.png"
-                    alt="ChapterMind website screenshot"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  ChapterMind is a modern platform designed to enhance the learning experience through interactive chapters and comprehensive
-                  content management. It aims to revolutionize online education.
-                </p>
-                <Button asChild>
-                  <Link href="http://chaptermind.vercel.app" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Visit Site
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      </main>
-
-      <footer className="border-t py-8 mt-16">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
-          <p>© 2024 Abdirahman Mohamett. All rights reserved.</p>
-        </div>
-      </footer>
+        {/* Footer */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-center text-sm text-gray-500 pt-8"
+        >
+          <p>© 2024 Abde Mohamett • Built with Next.js</p>
+        </motion.div>
+      </div>
     </div>
   )
 }
